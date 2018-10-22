@@ -1,14 +1,14 @@
 import * as Msal from 'msal';
 export default class AuthService {
   constructor() {
-    let PROD_REDIRECT_URI = 'http://localhost:3000/auth-redirect';
+    let PROD_REDIRECT_URI = process.env.REACT_APP_REPLY_URL;
     let redirectUri = window.location.origin;
     if (window.location.hostname !== '127.0.0.1') {
       redirectUri = PROD_REDIRECT_URI;
     }
     this.applicationConfig = {
-      clientID: process.env.CLIENT_ID,
-      authority: process.env.AUTHORITY,
+      clientID: process.env.REACT_APP_CLIENT_ID,
+      authority: process.env.REACT_APP_AUTHORITY,
       graphScopes: ['user.read']
     };
     this.app = new Msal.UserAgentApplication(
